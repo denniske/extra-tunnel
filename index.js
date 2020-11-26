@@ -67,9 +67,9 @@ function packetRead(bsz, bufs, buf, fn) {
   // 1. update buffers
   bufs.push(buf);
   bsz += buf.length;
-  while(bsz>=2) {
+  while(bsz>=4) {
     // 2. is packet available?
-    var buf = bufs[0].length<2? buffersConcat(bufs) : bufs[0];
+    var buf = bufs[0].length<4? buffersConcat(bufs) : bufs[0];
     var psz = buf.readUInt32BE(0, true);
     if(bsz<psz) break;
     // 3. read [size][on][set][tag][body]
